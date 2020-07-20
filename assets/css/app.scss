@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+
+main {
+  @apply mt-24;
+}
+
+.alert:empty {
+  @apply hidden;
+}
+
+a {
+  @apply text-indigo-500 font-normal no-underline;
+
+  &:hover {
+    @apply text-indigo-700 no-underline;
+  }
+}
+
+.btn {
+  @apply font-normal border border-transparent py-2 px-3 text-base rounded;
+}
+
+.btn-block {
+  @apply block w-full;
+}
+
+.btn-primary {
+  @apply border border-blue-600 bg-blue-600 text-white;
+
+  &:hover {
+    @apply border-blue-700 bg-blue-700;
+  }
+}
+
+.btn-dark {
+  @apply border border-gray-900 bg-gray-900 text-white;
+
+  &:hover {
+    @apply border-black bg-black;
+  }
+}
+
+.alert {
+  @apply relative py-3 px-5 mb-4 border border-transparent rounded;
+
+  &.alert-info {
+    @apply bg-blue-700 border-blue-800 text-white;
+  }
+
+  &.alert-success {
+    @apply bg-green-700 border-green-800 text-white;
+  }
+
+  &.alert-danger {
+    @apply bg-red-700 border-red-800 text-white;
+  }
+}
+
+.card {
+  @apply relative flex flex-col bg-white rounded-lg border border-gray-200 shadow-lg;
+
+  .card-header {
+    @apply py-2 px-5 text-base leading-normal bg-gray-100;
+  }
+
+  h5.card-header {
+    @apply text-lg;
+  }
+
+  .card-body {
+    @apply p-5;
+  }
+
+  .card-link+.card-link {
+    @apply ml-5;
+  }
+}
+
+table {
+  @apply w-full mb-3;
+
+  th {
+    @apply p-3 text-left align-bottom border-b border-gray-200;
+  }
+
+  td {
+    @apply p-3;
+  }
+}
+
+form {
+  label {
+    @apply inline-block mb-2;
+  }
+
+  .form-control {
+    @apply block w-full h-auto py-2 px-3 text-base font-normal leading-normal text-gray-700 border border-gray-400 rounded;
+    @apply duration-150 transition-colors transition-shadow ease-in-out;
+
+    &:hover {
+      @apply border-gray-500;
+    }
+
+    &:focus {
+      @apply border-indigo-200 outline-none;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  .form-check {
+    @apply relative block pl-5;
+  }
+
+  .form-check-input {
+    @apply absolute p-0 mt-1 -ml-5;
+  }
+
+  .invalid-feedback {
+    @apply block text-red-600 text-sm capitalize;
+
+    &.phx-no-feedback {
+      @apply hidden;
+    }
+  }
+}
+
+@tailwind utilities;

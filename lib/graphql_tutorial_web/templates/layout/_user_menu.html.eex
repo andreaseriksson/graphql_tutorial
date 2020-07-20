@@ -1,0 +1,10 @@
+<ul class="flex mb-0">
+<%= if @current_user do %>
+  <li><span class="inline-block px-2"><%= @current_user.email %></span></li>
+  <li><%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "px-2 text-black text-opacity-50 hover:text-opacity-75 transition-all duration-200 ease-in-out" %></li>
+  <li><%= link "Logout", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "px-2 text-black text-opacity-50 hover:text-opacity-75 transition-all duration-200 ease-in-out" %></li>
+<% else %>
+  <li><%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "px-2 text-black text-opacity-50 hover:text-opacity-75 transition-all duration-200 ease-in-out" %></li>
+  <li><%= link "Login", to: Routes.user_session_path(@conn, :new), class: "px-2 text-black text-opacity-50 hover:text-opacity-75 transition-all duration-200 ease-in-out" %></li>
+<% end %>
+</ul>
