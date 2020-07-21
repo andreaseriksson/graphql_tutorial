@@ -43,6 +43,12 @@ defmodule GraphqlTutorial.MixProject do
       {:hackney, "~> 1.9"},
       {:sweet_xml, "~> 0.6"},
 
+      {:absinthe, "~> 1.5.0"},
+      {:absinthe_plug, "~> 1.5.0"},
+      {:absinthe_phoenix, "~> 2.0.0"},
+
+      {:guardian, "~> 2.0"},
+
       {:bcrypt_elixir, "~> 2.0"},
       {:phx_gen_auth, "~> 0.3.0", only: [:dev], runtime: false},
       {:sobelow, "~> 0.8", only: :dev},
