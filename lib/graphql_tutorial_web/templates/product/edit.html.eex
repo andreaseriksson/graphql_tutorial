@@ -1,0 +1,12 @@
+<div class="flex flex-wrap">
+  <div class="w-full md:w-2/3">
+    <div class="card">
+      <h5 class="card-header">
+        Edit Product
+      </h5>
+      <div class="card-body">
+        <%= render "form.html", Map.put(assigns, :action, Routes.product_path(@conn, :update, @product)) %>
+      </div>
+    </div>
+  </div>
+</div>

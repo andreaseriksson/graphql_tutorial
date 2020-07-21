@@ -16,12 +16,6 @@ defmodule GraphqlTutorialWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", GraphqlTutorialWeb do
-    pipe_through :browser
-
-    get "/", PageController, :index
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", GraphqlTutorialWeb do
   #   pipe_through :api
@@ -61,6 +55,8 @@ defmodule GraphqlTutorialWeb.Router do
   scope "/", GraphqlTutorialWeb do
     pipe_through [:browser, :require_authenticated_user]
 
+    resources "/products", ProductController, except: [:index, :show]
+
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings/update_password", UserSettingsController, :update_password
     put "/users/settings/update_email", UserSettingsController, :update_email
@@ -75,6 +71,9 @@ defmodule GraphqlTutorialWeb.Router do
     get "/users/confirm", UserConfirmationController, :new
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :confirm
+
+    resources "/products", ProductController, only: [:index, :show]
+    get "/", PageController, :index
   end
 
   if Mix.env == :dev do
