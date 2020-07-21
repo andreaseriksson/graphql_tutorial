@@ -16,7 +16,7 @@ config :graphql_tutorial, GraphqlTutorial.Repo,
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :graphql_tutorial, GraphqlTutorialWeb.Endpoint,
-  http: [port: 4000],
+  http: [port: 4020],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
