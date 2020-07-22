@@ -25,7 +25,14 @@ defmodule GraphqlTutorialWeb.Router do
     pipe_through :api
 
     post "/sign_in", SessionController, :create
-    resources "/products", ProductController
+    resources "/products", ProductController, only: [:index, :show]
+  end
+
+  ## Authentication api routes
+  scope "/api", GraphqlTutorialWeb.Api, as: :api do
+    pipe_through :api_authenticated
+
+    resources "/products", ProductController, except: [:index, :show]
   end
 
   # Enables LiveDashboard only for development

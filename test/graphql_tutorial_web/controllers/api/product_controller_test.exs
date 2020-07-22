@@ -33,6 +33,8 @@ defmodule GraphqlTutorialWeb.Api.ProductControllerTest do
   end
 
   describe "create product" do
+    setup [:create_user_and_assign_valid_jwt]
+
     test "renders product when data is valid", %{conn: conn} do
       conn = post(conn, Routes.api_product_path(conn, :create), product: @create_attrs)
       assert %{"id" => id} = json_response(conn, 201)["data"]
@@ -54,7 +56,7 @@ defmodule GraphqlTutorialWeb.Api.ProductControllerTest do
   end
 
   describe "update product" do
-    setup [:create_product]
+    setup [:create_product, :create_user_and_assign_valid_jwt]
 
     test "renders product when data is valid", %{conn: conn, product: %Product{id: id} = product} do
       conn = put(conn, Routes.api_product_path(conn, :update, product), product: @update_attrs)
@@ -77,7 +79,7 @@ defmodule GraphqlTutorialWeb.Api.ProductControllerTest do
   end
 
   describe "delete product" do
-    setup [:create_product]
+    setup [:create_product, :create_user_and_assign_valid_jwt]
 
     test "deletes chosen product", %{conn: conn, product: product} do
       conn = delete(conn, Routes.api_product_path(conn, :delete, product))
