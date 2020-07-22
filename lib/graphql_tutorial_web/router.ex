@@ -17,9 +17,11 @@ defmodule GraphqlTutorialWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", GraphqlTutorialWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", GraphqlTutorialWeb.Api, as: :api do
+    pipe_through :api
+
+    resources "/products", ProductController
+  end
 
   # Enables LiveDashboard only for development
   #
