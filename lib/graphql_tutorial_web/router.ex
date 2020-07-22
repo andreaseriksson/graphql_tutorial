@@ -16,10 +16,15 @@ defmodule GraphqlTutorialWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :api_authenticated do
+    plug GraphqlTutorialWeb.AuthAccessPipeline
+  end
+
   # Other scopes may use custom stacks.
   scope "/api", GraphqlTutorialWeb.Api, as: :api do
     pipe_through :api
 
+    post "/sign_in", SessionController, :create
     resources "/products", ProductController
   end
 

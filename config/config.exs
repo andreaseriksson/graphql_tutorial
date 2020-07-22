@@ -26,6 +26,15 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :graphql_tutorial, GraphqlTutorial.Guardian,
+   issuer: "graphql_tutorial",
+   secret_key: "BY8grm00++tVtByLhHG15he/3GlUG0rOSLmP2/2cbIRwdR4xJk1RHvqGHPFuNcF8",
+   ttl: {30, :days}
+
+config :graphql_tutorial, GraphqlTutorialWeb.AuthAccessPipeline,
+   module: GraphqlTutorial.Guardian,
+   error_handler: GraphqlTutorialWeb.AuthErrorHandler
+
 config :waffle,
   storage: Waffle.Storage.S3, # or Waffle.Storage.Local
   bucket: System.get_env("AWS_BUCKET_NAME") # if using S3
