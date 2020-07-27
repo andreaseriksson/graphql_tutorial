@@ -14,6 +14,7 @@ defmodule GraphqlTutorialWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug GraphqlTutorialWeb.Context
   end
 
   pipeline :api_authenticated do
@@ -26,6 +27,7 @@ defmodule GraphqlTutorialWeb.Router do
 
     post "/sign_in", SessionController, :create
     resources "/products", ProductController, only: [:index, :show]
+    forward "/", Absinthe.Plug, schema: GraphqlTutorialWeb.Schema
   end
 
   ## Authentication api routes
@@ -92,5 +94,6 @@ defmodule GraphqlTutorialWeb.Router do
 
   if Mix.env == :dev do
     forward "/sent_emails", Bamboo.SentEmailViewerPlug
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: GraphqlTutorialWeb.Schema
   end
 end
