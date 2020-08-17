@@ -1,12 +1,14 @@
-defmodule XXGraphqlTutorialWeb.Schema.ProductTypes do
+defmodule GraphqlTutorialWeb.Schema.ProductTypes do
   use Absinthe.Schema.Notation
 
   alias GraphqlTutorialWeb.Resolvers
 
   @desc "A product"
   object :product do
-    field :name, :string
     field :id, :id
+    field :name, :string
+    field :description, :string
+    field :price, :float
   end
 
   object :get_products do
@@ -38,7 +40,9 @@ defmodule XXGraphqlTutorialWeb.Schema.ProductTypes do
 
     @desc "Create a product"
     field :create_product, :product do
-      arg(:name, :string)
+      arg :name, non_null(:string)
+      arg :description, non_null(:string)
+      arg :price, non_null(:float)
 
       resolve(&Resolvers.Products.create_product/2)
     end

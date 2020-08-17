@@ -1,4 +1,4 @@
-defmodule XXGraphqlTutorialWeb.Schema.UserTypes do
+defmodule GraphqlTutorialWeb.Schema.UserTypes do
   use Absinthe.Schema.Notation
 
   alias GraphqlTutorialWeb.Resolvers

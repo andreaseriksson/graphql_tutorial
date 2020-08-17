@@ -14,6 +14,9 @@ defmodule GraphqlTutorialWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  pipeline :graphql do
     plug GraphqlTutorialWeb.Context
   end
 
@@ -27,7 +30,6 @@ defmodule GraphqlTutorialWeb.Router do
 
     post "/sign_in", SessionController, :create
     resources "/products", ProductController, only: [:index, :show]
-    forward "/", Absinthe.Plug, schema: GraphqlTutorialWeb.Schema
   end
 
   ## Authentication api routes
@@ -37,7 +39,14 @@ defmodule GraphqlTutorialWeb.Router do
     resources "/products", ProductController, except: [:index, :show]
   end
 
-  # Enables LiveDashboard only for development
+ # Other scopes may use custom stacks.
+  scope "/api" do
+    pipe_through :graphql
+
+    forward "/", Absinthe.Plug, schema: GraphqlTutorialWeb.Schema
+  end
+
+# Enables LiveDashboard only for development
   #
   # If you want to use the LiveDashboard in production, you should put
   # it behind authentication and allow only admins to access it.

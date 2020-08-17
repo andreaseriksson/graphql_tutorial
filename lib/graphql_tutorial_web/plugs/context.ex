@@ -16,7 +16,7 @@ defmodule GraphqlTutorialWeb.Context do
   end
 
   defp build_context(conn) do
-    with ["" <> token] <- get_req_header(conn, "authorization"),
+    with ["bearer: " <> token] <- get_req_header(conn, "authorization"),
          {:ok, user, _claims} <- GraphqlTutorial.Guardian.resource_from_token(token) do
       {:ok, %{current_user: user}}
     end

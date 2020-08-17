@@ -1,9 +1,8 @@
-defmodule XXGraphqlTutorialWeb.Schema do
+defmodule GraphqlTutorialWeb.Schema do
   use Absinthe.Schema
 
   alias GraphqlTutorialWeb.Schema
 
-  import_types(Absinthe.Type.Custom)
   import_types(Schema.UserTypes)
   import_types(Schema.ProductTypes)
 

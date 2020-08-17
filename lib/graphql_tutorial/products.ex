@@ -36,6 +36,7 @@ defmodule GraphqlTutorial.Products do
 
   """
   def get_product!(id), do: Repo.get!(Product, id)
+  def get_product(id), do: Repo.get_by(Product, id: id)
 
   @doc """
   Creates a product.
